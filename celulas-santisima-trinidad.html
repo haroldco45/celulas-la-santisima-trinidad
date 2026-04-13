@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ministerio Celular — La Santísima Trinidad</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D89A;
+    --gold-dark: #8B6914;
+    --navy: #1A2744;
+    --navy-mid: #253560;
+    --navy-light: #3A4F82;
+    --cream: #FAF6EE;
+    --cream-dark: #EFE8D5;
+    --white: #FFFFFF;
+    --text-dark: #1A1A1A;
+    --text-mid: #4A4A5A;
+    --text-light: #8A8A9A;
+    --success: #2E7D52;
+    --success-bg: #E6F4ED;
+    --danger: #9B2335;
+    --danger-bg: #FCEBED;
+    --shadow-sm: 0 2px 8px rgba(26,39,68,0.10);
+    --shadow-md: 0 4px 20px rgba(26,39,68,0.15);
+    --shadow-lg: 0 8px 40px rgba(26,39,68,0.18);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+    font-size: 15px;
+  }
+
+  /* ── HEADER ─────────────────────────────── */
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-circle {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.3);
+  }
+  .brand-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--gold-light);
+  }
+  .brand-text p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .header-stats {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+  .hstat {
+    text-align: center;
+  }
+  .hstat-num {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+  .hstat-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── NAV ─────────────────────────────────── */
+  nav {
+    background: var(--navy-mid);
+    border-bottom: 2px solid var(--gold);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.65);
+    padding: 11px 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .nav-btn:hover { color: var(--gold-light); background: rgba(201,168,76,0.08); }
+  .nav-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    background: rgba(201,168,76,0.12);
+  }
+
+  /* ── LAYOUT ──────────────────────────────── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+  }
+
+  /* ── CARDS ───────────────────────────────── */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 20px;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* ── GRID ────────────────────────────────── */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+
+  /* ── METRIC CARDS ────────────────────────── */
+  .metric {
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    border: 1px solid rgba(201,168,76,0.2);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  .metric::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+  }
+  .metric-icon {
+    font-size: 22px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .metric-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+    display: block;
+    font-family: 'Playfair Display', serif;
+  }
+  .metric-label {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 4px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .metric-trend {
+    font-size: 11px;
+    margin-top: 6px;
+    font-weight: 600;
+  }
+  .trend-up { color: var(--success); }
+  .trend-down { color: var(--danger); }
+
+  /* ── BUTTONS ─────────────────────────────── */
+  .btn {
+    border: none;
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-primary {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: var(--navy-light); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .btn-gold:hover { background: var(--gold-dark); color: var(--white); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    color: var(--navy);
+  }
+  .btn-outline:hover { background: var(--gold); color: var(--navy); }
+  .btn-sm { padding: 6px 12px; font-size: 12px; }
+  .btn-danger { background: var(--danger-bg); color: var(--danger); border: 1px solid var(--danger); }
+  .btn-danger:hover { background: var(--danger); color: var(--white); }
+
+  /* ── FORMS ───────────────────────────────── */
+  .form-group { margin-bottom: 14px; }
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-mid);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  input, select, textarea {
+    width: 100%;
+    border: 1.5px solid var(--cream-dark);
+    border-radius: var(--radius-sm);
+    padding: 9px 13px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: var(--text-dark);
+    background: var(--white);
+    transition: border 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+  }
+  textarea { resize: vertical; min-height: 80px; }
+
+  /* ── MODAL ───────────────────────────────── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(26,39,68,0.6);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    backdrop-filter: blur(2px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-top: 4px solid var(--gold);
+  }
+  .modal-header {
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .modal-body { padding: 18px 20px; }
+  .modal-footer {
+    padding: 12px 20px 18px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  .close-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 20px; color: var(--text-light); line-height: 1;
+    padding: 2px 6px;
+  }
+  .close-btn:hover { color: var(--danger); }
+
+  /* ── CÉLULA CARD ─────────────────────────── */
+  .celula-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(201,168,76,0.18);
+    padding: 18px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .celula-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .celula-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--navy-light));
+  }
+  .celula-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .badge-activa { background: var(--success-bg); color: var(--success); }
+  .badge-nueva { background: #E8F0FE; color: #1A56AC; }
+  .badge-inactiva { background: var(--cream-dark); color: var(--text-light); }
+  .celula-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .celula-lider {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 12px;
+  }
+  .celula-stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .cstat { text-align: center; }
+  .cstat-num { font-size: 18px; font-weight: 700; color: var(--navy); display: block; }
+  .cstat-lbl { font-size: 10px; color: var(--text-light); text-transform: uppercase; }
+  .celula-actions { display: flex; gap: 8px; }
+
+  /* ── MEMBER ROW ──────────────────────────── */
+  .member-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .member-row:last-child { border-bottom: none; }
+  .avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .member-info { flex: 1; }
+  .member-name { font-size: 14px; font-weight: 600; color: var(--text-dark); }
+  .member-role { font-size: 11px; color: var(--text-light); }
+  .member-actions { display: flex; gap: 6px; }
+
+  /* ── ASISTENCIA ──────────────────────────── */
+  .asistencia-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .asist-item {
+    border: 1.5px solid var(--cream-dark);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+  }
+  .asist-item.presente {
+    border-color: var(--success);
+    background: var(--success-bg);
+  }
+  .asist-item.ausente {
+    border-color: var(--cream-dark);
+    background: var(--white);
+    opacity: 0.6;
+  }
+  .asist-check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--text-light);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 10px;
+  }
+  .asist-item.presente .asist-check {
+    background: var(--success);
+    border-color: var(--success);
+    color: var(--white);
+  }
+  .asist-name { font-size: 12px; font-weight: 600; color: var(--text-dark); }
+
+  /* ── REUNIÓN HISTORIAL ───────────────────── */
+  .reunion-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    align-items: flex-start;
+  }
+  .reunion-item:last-child { border-bottom: none; }
+  .reunion-date {
+    background: var(--navy);
+    color: var(--gold-light);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    text-align: center;
+    flex-shrink: 0;
+    min-width: 54px;
+  }
+  .reunion-date-day { font-size: 20px; font-weight: 700; display: block; line-height: 1; }
+  .reunion-date-mes { font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .reunion-info { flex: 1; }
+  .reunion-tema { font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 3px; }
+  .reunion-meta { font-size: 12px; color: var(--text-light); }
+  .reunion-badge {
+    font-size: 11px; font-weight: 700;
+    padding: 3px 8px; border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  /* ── ORACIÓN ─────────────────────────────── */
+  .oracion-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--gold);
+  }
+  .oracion-texto { font-size: 14px; color: var(--text-dark); line-height: 1.6; margin-bottom: 8px; font-style: italic; }
+  .oracion-meta { font-size: 11px; color: var(--text-light); display: flex; justify-content: space-between; }
+  .oracion-status {
+    font-size: 11px; font-weight: 700;
+    padding: 2px 7px; border-radius: 10px;
+  }
+  .status-pendiente { background: #FFF3CD; color: #856404; }
+  .status-respondida { background: var(--success-bg); color: var(--success); }
+
+  /* ── EVANGELISMO ─────────────────────────── */
+  .prospecto-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid rgba(201,168,76,0.18);
+    padding: 16px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-sm);
+  }
+  .prospecto-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .prospecto-info { flex: 1; }
+  .prospecto-name { font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+  .prospecto-data { font-size: 12px; color: var(--text-light); }
+  .etapa-bar {
+    display: flex;
+    gap: 3px;
+    margin-top: 6px;
+  }
+  .etapa-step {
+    flex: 1; height: 4px;
+    border-radius: 2px;
+    background: var(--cream-dark);
+  }
+  .etapa-step.done { background: var(--gold); }
+  .etapa-step.current { background: var(--navy); }
+
+  /* ── TAGS / FILTROS ──────────────────────── */
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .filter-tag {
+    border: 1.5px solid var(--cream-dark);
+    background: var(--white);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .filter-tag.active, .filter-tag:hover {
+    border-color: var(--gold);
+    background: var(--navy);
+    color: var(--gold-light);
+  }
+
+  /* ── PROGRESS BAR ────────────────────────── */
+  .progress-bar {
+    background: var(--cream-dark);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--gold), var(--navy-light));
+    transition: width 0.4s;
+  }
+
+  /* ── TOAST ───────────────────────────────── */
+  #toast {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 12px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s;
+    border-left: 4px solid var(--gold);
+  }
+  #toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── DIVIDER ─────────────────────────────── */
+  .divider { height: 1px; background: var(--cream-dark); margin: 16px 0; }
+
+  /* ── EMPTY STATE ─────────────────────────── */
+  .empty {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--text-light);
+  }
+  .empty-icon { font-size: 36px; display: block; margin-bottom: 8px; }
+  .empty-text { font-size: 14px; }
+
+  /* ── FOOTER ──────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 16px;
+    font-size: 11px;
+    color: var(--text-light);
+    border-top: 1px solid var(--cream-dark);
+    margin-top: 24px;
+    background: var(--white);
+  }
+
+  /* ── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 600px) {
+    .header-stats { display: none; }
+    .brand-text h1 { font-size: 14px; }
+    main { padding: 16px 12px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="logo-circle">✝</div>
+      <div class="brand-text">
+        <h1>La Santísima Trinidad</h1>
+        <p>Ministerio de Células</p>
+      </div>
+    </div>
+    <div class="header-stats">
+      <div class="hstat">
+        <span class="hstat-num" id="total-celulas">0</span>
+        <span class="hstat-label">Células</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-num" id="total-miembros">0</span>
+        <span class="hstat-label">Miembros</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-num" id="total-prospectos">0</span>
+        <span class="hstat-label">Prospectos</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showSection('dashboard', this)">📊 Dashboard</button>
+    <button class="nav-btn" onclick="showSection('celulas', this)">🏠 Células</button>
+    <button class="nav-btn" onclick="showSection('miembros', this)">👥 Miembros</button>
+    <button class="nav-btn" onclick="showSection('asistencia', this)">✅ Asistencia</button>
+    <button class="nav-btn" onclick="showSection('oracion', this)">🙏 Peticiones</button>
+    <button class="nav-btn" onclick="showSection('evangelismo', this)">🌱 Evangelismo</button>
+    <button class="nav-btn" onclick="showSection('recursos', this)">📖 Recursos</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══ DASHBOARD ══════════════════════════════════════════════ -->
+<section id="dashboard" class="section active">
+  <h2 class="section-title">Panel Principal</h2>
+  <p class="section-sub">Visión general del Ministerio Celular — Parroquia La Santísima Trinidad</p>
+
+  <div class="grid-4" style="margin-bottom: 20px;">
+    <div class="metric">
+      <span class="metric-icon">🏠</span>
+      <span class="metric-num" id="m-celulas">0</span>
+      <div class="metric-label">Células Activas</div>
+      <div class="metric-trend trend-up" id="m-celulas-trend">↑ Creciendo</div>
+    </div>
+    <div class="metric">
+      <span class="metric-icon">👥</span>
+      <span class="metric-num" id="m-miembros">0</span>
+      <div class="metric-label">Total Miembros</div>
+      <div class="metric-trend trend-up">↑ Este mes</div>
+    </div>
+    <div class="metric">
+      <span class="metric-icon">🙏</span>
+      <span class="metric-num" id="m-oraciones">0</span>
+      <div class="metric-label">Peticiones activas</div>
+      <div class="metric-trend" style="color: var(--gold-dark);">En oración</div>
+    </div>
+    <div class="metric">
+      <span class="metric-icon">🌱</span>
+      <span class="metric-num" id="m-prospectos">0</span>
+      <div class="metric-label">Prospectos</div>
+      <div class="metric-trend trend-up">↑ Evangelismo</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- Células activas -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Resumen de Células</span>
+        <button class="btn btn-sm btn-outline" onclick="showSection('celulas', document.querySelector('.nav-btn:nth-child(2))'))">Ver todas</button>
+      </div>
+      <div id="dash-celulas-list"></div>
+    </div>
+
+    <!-- Próximas reuniones -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Novedades del Ministerio</span>
+      </div>
+      <div id="dash-novedades">
+        <div class="reunion-item">
+          <div class="reunion-date" style="background: var(--gold); color: var(--navy);">
+            <span class="reunion-date-day">13</span>
+            <span class="reunion-date-mes">Abr</span>
+          </div>
+          <div class="reunion-info">
+            <div class="reunion-tema">Inicio del ciclo celular Q2 2025</div>
+            <div class="reunion-meta">Todas las células — Tema: El discipulado y la multiplicación</div>
+          </div>
+        </div>
+        <div class="reunion-item">
+          <div class="reunion-date">
+            <span class="reunion-date-day">20</span>
+            <span class="reunion-date-mes">Abr</span>
+          </div>
+          <div class="reunion-info">
+            <div class="reunion-tema">Capacitación de líderes celulares</div>
+            <div class="reunion-meta">Salón parroquial — 4:00 pm</div>
+          </div>
+        </div>
+        <div class="reunion-item">
+          <div class="reunion-date">
+            <span class="reunion-date-day">27</span>
+            <span class="reunion-date-mes">Abr</span>
+          </div>
+          <div class="reunion-info">
+            <div class="reunion-tema">Jornada de evangelismo barrial</div>
+            <div class="reunion-meta">Zona norte — Coordinadores: todos los líderes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cita inspiracional -->
+  <div style="background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); border-radius: var(--radius); padding: 24px 28px; margin-top: 20px; position: relative; overflow: hidden;">
+    <div style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 80px; opacity: 0.08;">✝</div>
+    <p style="font-family: 'Playfair Display', serif; font-size: 16px; color: var(--gold-light); font-style: italic; line-height: 1.6; margin-bottom: 8px;">"Donde dos o tres se reúnen en mi nombre, allí estoy yo en medio de ellos."</p>
+    <p style="font-size: 12px; color: rgba(255,255,255,0.5);">Mateo 18:20 — Fundamento bíblico del ministerio celular</p>
+  </div>
+</section>
+
+<!-- ══ CÉLULAS ══════════════════════════════════════════════ -->
+<section id="celulas" class="section">
+  <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 6px;">
+    <div>
+      <h2 class="section-title">Gestión de Células</h2>
+      <p class="section-sub">Administra las células del ministerio</p>
+    </div>
+    <button class="btn btn-gold" onclick="abrirModalCelula()">+ Nueva Célula</button>
+  </div>
+
+  <div class="filter-row">
+    <span class="filter-tag active" onclick="filtrarCelulas('todas', this)">Todas</span>
+    <span class="filter-tag" onclick="filtrarCelulas('activa', this)">Activas</span>
+    <span class="filter-tag" onclick="filtrarCelulas('nueva', this)">Nuevas</span>
+    <span class="filter-tag" onclick="filtrarCelulas('inactiva', this)">Inactivas</span>
+  </div>
+
+  <div class="grid-2" id="celulas-container"></div>
+</section>
+
+<!-- ══ MIEMBROS ══════════════════════════════════════════════ -->
+<section id="miembros" class="section">
+  <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 6px;">
+    <div>
+      <h2 class="section-title">Miembros</h2>
+      <p class="section-sub">Directorio de miembros activos</p>
+    </div>
+    <button class="btn btn-gold" onclick="abrirModalMiembro()">+ Nuevo Miembro</button>
+  </div>
+
+  <div class="filter-row">
+    <span class="filter-tag active" onclick="filtrarMiembros('todos', this)">Todos</span>
+    <span class="filter-tag" onclick="filtrarMiembros('lider', this)">Líderes</span>
+    <span class="filter-tag" onclick="filtrarMiembros('miembro', this)">Miembros</span>
+    <span class="filter-tag" onclick="filtrarMiembros('nuevo', this)">Nuevos</span>
+  </div>
+
+  <div class="card">
+    <div id="miembros-list"></div>
+  </div>
+</section>
+
+<!-- ══ ASISTENCIA ══════════════════════════════════════════════ -->
+<section id="asistencia" class="section">
+  <h2 class="section-title">Control de Asistencia</h2>
+  <p class="section-sub">Registra la asistencia a reuniones celulares</p>
+
+  <div class="card" style="margin-bottom: 16px;">
+    <div class="card-header">
+      <span class="card-title">Nueva Reunión</span>
+    </div>
+    <div class="grid-3">
+      <div class="form-group">
+        <label>Célula</label>
+        <select id="asist-celula" onchange="cargarMiembrosAsistencia()">
+          <option value="">Selecciona...</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Fecha</label>
+        <input type="date" id="asist-fecha">
+      </div>
+      <div class="form-group">
+        <label>Tema de la reunión</label>
+        <input type="text" id="asist-tema" placeholder="Ej: El discipulado cristiano">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Versículo / Reflexión</label>
+      <input type="text" id="asist-versiculo" placeholder="Ej: Juan 3:16">
+    </div>
+  </div>
+
+  <div class="card" id="asist-miembros-card" style="display:none;">
+    <div class="card-header">
+      <span class="card-title">Marcar Asistencia</span>
+      <span id="asist-counter" style="font-size: 13px; color: var(--text-light);">0 presentes</span>
+    </div>
+    <div class="asistencia-grid" id="asistencia-grid"></div>
+    <div style="margin-top: 16px; display: flex; gap: 10px; justify-content: flex-end;">
+      <button class="btn btn-primary" onclick="guardarAsistencia()">💾 Guardar Asistencia</button>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 16px;">
+    <div class="card-header">
+      <span class="card-title">Historial de Reuniones</span>
+    </div>
+    <div id="historial-reuniones"></div>
+  </div>
+</section>
+
+<!-- ══ ORACIÓN ══════════════════════════════════════════════ -->
+<section id="oracion" class="section">
+  <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 6px;">
+    <div>
+      <h2 class="section-title">Peticiones de Oración</h2>
+      <p class="section-sub">El corazón espiritual de cada célula</p>
+    </div>
+    <button class="btn btn-gold" onclick="abrirModalOracion()">+ Nueva Petición</button>
+  </div>
+
+  <div class="filter-row">
+    <span class="filter-tag active" onclick="filtrarOraciones('todas', this)">Todas</span>
+    <span class="filter-tag" onclick="filtrarOraciones('pendiente', this)">En oración</span>
+    <span class="filter-tag" onclick="filtrarOraciones('respondida', this)">Respondidas</span>
+  </div>
+
+  <div id="oraciones-list"></div>
+</section>
+
+<!-- ══ EVANGELISMO ══════════════════════════════════════════════ -->
+<section id="evangelismo" class="section">
+  <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 6px;">
+    <div>
+      <h2 class="section-title">Evangelismo y Prospectos</h2>
+      <p class="section-sub">Seguimiento de personas en proceso de integración</p>
+    </div>
+    <button class="btn btn-gold" onclick="abrirModalProspecto()">+ Nuevo Prospecto</button>
+  </div>
+
+  <div class="card" style="margin-bottom: 16px; background: linear-gradient(135deg, #E8F0FE, #F0F8FF);">
+    <p style="font-size: 13px; color: var(--navy); font-weight: 600; margin-bottom: 6px;">🌱 El modelo de multiplicación celular</p>
+    <p style="font-size: 12px; color: var(--text-mid); line-height: 1.6;">Cada célula crece evangelizando a los vecinos y se multiplica cuando alcanza su capacidad, formando nuevos líderes. El objetivo es discipular a cada prospecto hasta que se integre y pueda liderar su propia célula.</p>
+    <div style="display: flex; gap: 6px; align-items: center; margin-top: 10px; flex-wrap: wrap;">
+      <span style="background: var(--navy); color: var(--gold-light); padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;">1. Contacto</span>
+      <span style="color: var(--text-light); font-size: 12px;">→</span>
+      <span style="background: var(--navy-mid); color: var(--gold-light); padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;">2. Invitación</span>
+      <span style="color: var(--text-light); font-size: 12px;">→</span>
+      <span style="background: var(--gold-dark); color: var(--white); padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;">3. Visita célula</span>
+      <span style="color: var(--text-light); font-size: 12px;">→</span>
+      <span style="background: var(--success); color: var(--white); padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;">4. Miembro</span>
+    </div>
+  </div>
+
+  <div id="prospectos-list"></div>
+</section>
+
+<!-- ══ RECURSOS ══════════════════════════════════════════════ -->
+<section id="recursos" class="section">
+  <h2 class="section-title">Recursos del Ministerio</h2>
+  <p class="section-sub">Materiales de apoyo para líderes y miembros</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header"><span class="card-title">📖 Base Bíblica</span></div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="background: var(--cream); border-radius: var(--radius-sm); padding: 12px; border-left: 3px solid var(--gold);">
+          <p style="font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 4px;">Hechos 2:42-47</p>
+          <p style="font-size: 12px; color: var(--text-mid); line-height: 1.5;">La iglesia primitiva: comunión, fracción del pan, oraciones y multiplicación.</p>
+        </div>
+        <div style="background: var(--cream); border-radius: var(--radius-sm); padding: 12px; border-left: 3px solid var(--navy);">
+          <p style="font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 4px;">Mateo 28:19-20</p>
+          <p style="font-size: 12px; color: var(--text-mid); line-height: 1.5;">La gran comisión: Id y haced discípulos en todas las naciones.</p>
+        </div>
+        <div style="background: var(--cream); border-radius: var(--radius-sm); padding: 12px; border-left: 3px solid var(--gold);">
+          <p style="font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 4px;">Lucas 10:1-9</p>
+          <p style="font-size: 12px; color: var(--text-mid); line-height: 1.5;">Jesús envía de dos en dos — el modelo misionero para las células.</p>
+        </div>
+        <div style="background: var(--cream); border-radius: var(--radius-sm); padding: 12px; border-left: 3px solid var(--navy);">
+          <p style="font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 4px;">Romanos 16:3-5</p>
+          <p style="font-size: 12px; color: var(--text-mid); line-height: 1.5;">Las iglesias en las casas — el modelo de comunidades pequeñas del NT.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">🎯 Estructura de Reunión</span></div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: var(--gold-light); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0;">1</div>
+          <div>
+            <p style="font-size: 13px; font-weight: 600; color: var(--text-dark);">Bienvenida (5 min)</p>
+            <p style="font-size: 12px; color: var(--text-light);">Recibir a los miembros y prospectos con calidez.</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0;">2</div>
+          <div>
+            <p style="font-size: 13px; font-weight: 600; color: var(--text-dark);">Adoración (15 min)</p>
+            <p style="font-size: 12px; color: var(--text-light);">Alabanza y adoración en el hogar.</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: var(--gold-light); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0;">3</div>
+          <div>
+            <p style="font-size: 13px; font-weight: 600; color: var(--text-dark);">Palabra (25 min)</p>
+            <p style="font-size: 12px; color: var(--text-light);">Estudio bíblico participativo, no monólogo.</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0;">4</div>
+          <div>
+            <p style="font-size: 13px; font-weight: 600; color: var(--text-dark);">Oración (15 min)</p>
+            <p style="font-size: 12px; color: var(--text-light);">Peticiones, intercesión y testimonios.</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: var(--gold-light); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0;">5</div>
+          <div>
+            <p style="font-size: 13px; font-weight: 600; color: var(--text-dark);">Evangelismo (10 min)</p>
+            <p style="font-size: 12px; color: var(--text-light);">Planificar alcance y multiplicación.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">🌍 Modelos de Referencia</span></div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="background: var(--cream); border-radius: var(--radius-sm); padding: 12px;">
+          <p style="font-size: 13px; font-weight: 700; color: var(--navy);">Dove Christian Fellowship</p>
+          <p style="font-size: 12px; color: var(--text-mid); line-height: 1.5;">Pionero del movimiento celular en EE. UU. Énfasis en multiplicación y formación de líderes laicos.</p>
+        </div>
+        <div style="background: var(--cream); border-radius: var(--radius-sm); padding: 12px;">
+          <p style="font-size: 13px; font-weight: 700; color: var(--navy);">Iglesia Betania</p>
+          <p style="font-size: 12px; color: var(--text-mid); line-height: 1.5;">Modelo que integra células presenciales y virtuales para máxima cobertura comunitaria.</p>
+        </div>
+        <div style="background: var(--cream); border-radius: var(--radius-sm); padding: 12px;">
+          <p style="font-size: 13px; font-weight: 700; color: var(--navy);">Iglesia Elim (California)</p>
+          <p style="font-size: 12px; color: var(--text-mid); line-height: 1.5;">Crecimiento exponencial a través de redes celulares en comunidades hispanas.</p>
+        </div>
+        <div style="background: var(--cream); border-radius: var(--radius-sm); padding: 12px;">
+          <p style="font-size: 13px; font-weight: 700; color: var(--navy);">Joel Comiskey Group</p>
+          <p style="font-size: 12px; color: var(--text-mid); line-height: 1.5;">Análisis y recursos académicos sobre las iglesias celulares más grandes del mundo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">📋 Consejos para Líderes</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--cream-dark);">
+          <span style="font-size: 16px; flex-shrink: 0;">✦</span>
+          <p style="font-size: 13px; color: var(--text-dark); line-height: 1.5;"><strong>Visita a miembros</strong> al menos una vez al mes fuera de la reunión.</p>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--cream-dark);">
+          <span style="font-size: 16px; flex-shrink: 0;">✦</span>
+          <p style="font-size: 13px; color: var(--text-dark); line-height: 1.5;"><strong>Identifica y forma</strong> tu sucesor desde el inicio — la multiplicación es el objetivo.</p>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--cream-dark);">
+          <span style="font-size: 16px; flex-shrink: 0;">✦</span>
+          <p style="font-size: 13px; color: var(--text-dark); line-height: 1.5;"><strong>Mantén el grupo pequeño</strong>: 8 a 15 personas máximo para preservar la intimidad.</p>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--cream-dark);">
+          <span style="font-size: 16px; flex-shrink: 0;">✦</span>
+          <p style="font-size: 13px; color: var(--text-dark); line-height: 1.5;"><strong>Reporta mensualmente</strong> al pastor coordinador: asistencia, prospectos, necesidades.</p>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 0;">
+          <span style="font-size: 16px; flex-shrink: 0;">✦</span>
+          <p style="font-size: 13px; color: var(--text-dark); line-height: 1.5;"><strong>Combate el individualismo</strong> creando vínculos relacionales profundos entre miembros.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ MODALES ══════════════════════════════════════════════ -->
+
+<!-- Modal Célula -->
+<div class="modal-overlay" id="modal-celula">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modal-celula-title">Nueva Célula</h3>
+      <button class="close-btn" onclick="cerrarModal('modal-celula')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="celula-edit-id">
+      <div class="form-group">
+        <label>Nombre de la Célula</label>
+        <input type="text" id="celula-nombre" placeholder="Ej: Célula San José">
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Líder Principal</label>
+          <input type="text" id="celula-lider" placeholder="Nombre del líder">
+        </div>
+        <div class="form-group">
+          <label>Co-Líder</label>
+          <input type="text" id="celula-colider" placeholder="Nombre del co-líder">
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Día de reunión</label>
+          <select id="celula-dia">
+            <option>Lunes</option><option>Martes</option><option>Miércoles</option>
+            <option>Jueves</option><option>Viernes</option><option>Sábado</option><option>Domingo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Hora</label>
+          <input type="time" id="celula-hora" value="19:00">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Dirección / Barrio</label>
+        <input type="text" id="celula-direccion" placeholder="Ej: Calle 5 #12-34, Barrio Centro">
+      </div>
+      <div class="form-group">
+        <label>Zona</label>
+        <select id="celula-zona">
+          <option>Norte</option><option>Sur</option><option>Este</option><option>Oeste</option><option>Centro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Estado</label>
+        <select id="celula-estado">
+          <option value="activa">Activa</option>
+          <option value="nueva">Nueva</option>
+          <option value="inactiva">Inactiva</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="cerrarModal('modal-celula')">Cancelar</button>
+      <button class="btn btn-gold" onclick="guardarCelula()">💾 Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Miembro -->
+<div class="modal-overlay" id="modal-miembro">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modal-miembro-title">Nuevo Miembro</h3>
+      <button class="close-btn" onclick="cerrarModal('modal-miembro')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="miembro-edit-id">
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" id="miembro-nombre" placeholder="Nombre">
+        </div>
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text" id="miembro-apellido" placeholder="Apellido">
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" id="miembro-tel" placeholder="+1 (555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="miembro-email" placeholder="correo@ejemplo.com">
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Célula</label>
+          <select id="miembro-celula"></select>
+        </div>
+        <div class="form-group">
+          <label>Rol</label>
+          <select id="miembro-rol">
+            <option value="miembro">Miembro</option>
+            <option value="lider">Líder</option>
+            <option value="nuevo">Nuevo</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Dirección</label>
+        <input type="text" id="miembro-dir" placeholder="Dirección">
+      </div>
+      <div class="form-group">
+        <label>Notas</label>
+        <textarea id="miembro-notas" placeholder="Notas adicionales..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="cerrarModal('modal-miembro')">Cancelar</button>
+      <button class="btn btn-gold" onclick="guardarMiembro()">💾 Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Oración -->
+<div class="modal-overlay" id="modal-oracion">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Nueva Petición de Oración</h3>
+      <button class="close-btn" onclick="cerrarModal('modal-oracion')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Presentado por</label>
+        <input type="text" id="oracion-quien" placeholder="Nombre de la persona">
+      </div>
+      <div class="form-group">
+        <label>Célula</label>
+        <select id="oracion-celula"></select>
+      </div>
+      <div class="form-group">
+        <label>Petición</label>
+        <textarea id="oracion-texto" placeholder="Describe la petición de oración..." style="min-height: 100px;"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Tipo</label>
+        <select id="oracion-tipo">
+          <option>Salud</option><option>Familia</option><option>Trabajo</option>
+          <option>Espiritual</option><option>Finanzas</option><option>Otro</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="cerrarModal('modal-oracion')">Cancelar</button>
+      <button class="btn btn-gold" onclick="guardarOracion()">🙏 Registrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Prospecto -->
+<div class="modal-overlay" id="modal-prospecto">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Nuevo Prospecto</h3>
+      <button class="close-btn" onclick="cerrarModal('modal-prospecto')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" id="prosp-nombre" placeholder="Nombre">
+        </div>
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text" id="prosp-apellido" placeholder="Apellido">
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" id="prosp-tel" placeholder="+1 (555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>Barrio / Vecindario</label>
+          <input type="text" id="prosp-barrio" placeholder="Barrio">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Célula responsable</label>
+        <select id="prosp-celula"></select>
+      </div>
+      <div class="form-group">
+        <label>Etapa actual</label>
+        <select id="prosp-etapa">
+          <option value="1">1 — Contacto inicial</option>
+          <option value="2">2 — Invitación enviada</option>
+          <option value="3">3 — Visitó la célula</option>
+          <option value="4">4 — Miembro activo</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Evangelizador</label>
+        <input type="text" id="prosp-evang" placeholder="Miembro que lo contactó">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="cerrarModal('modal-prospecto')">Cancelar</button>
+      <button class="btn btn-gold" onclick="guardarProspecto()">🌱 Registrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados
+</footer>
+
+<script>
+// ──────────────────────────── ESTADO ────────────────────────────
+let celulas = JSON.parse(localStorage.getItem('sst-celulas') || '[]');
+let miembros = JSON.parse(localStorage.getItem('sst-miembros') || '[]');
+let oraciones = JSON.parse(localStorage.getItem('sst-oraciones') || '[]');
+let prospectos = JSON.parse(localStorage.getItem('sst-prospectos') || '[]');
+let reuniones = JSON.parse(localStorage.getItem('sst-reuniones') || '[]');
+
+function save() {
+  localStorage.setItem('sst-celulas', JSON.stringify(celulas));
+  localStorage.setItem('sst-miembros', JSON.stringify(miembros));
+  localStorage.setItem('sst-oraciones', JSON.stringify(oraciones));
+  localStorage.setItem('sst-prospectos', JSON.stringify(prospectos));
+  localStorage.setItem('sst-reuniones', JSON.stringify(reuniones));
+}
+
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ──────────────────────────── NAVEGACIÓN ────────────────────────
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  else document.querySelectorAll('.nav-btn').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active');
+  });
+  render(id);
+}
+
+// ──────────────────────────── RENDER ────────────────────────────
+function render(section) {
+  updateHeaderStats();
+  if (section === 'dashboard' || section === undefined) renderDashboard();
+  if (section === 'celulas') renderCelulas();
+  if (section === 'miembros') renderMiembros();
+  if (section === 'asistencia') renderAsistencia();
+  if (section === 'oracion') renderOraciones();
+  if (section === 'evangelismo') renderProspectos();
+}
+
+function updateHeaderStats() {
+  document.getElementById('total-celulas').textContent = celulas.filter(c => c.estado === 'activa').length;
+  document.getElementById('total-miembros').textContent = miembros.length;
+  document.getElementById('total-prospectos').textContent = prospectos.length;
+  document.getElementById('m-celulas').textContent = celulas.filter(c => c.estado === 'activa').length;
+  document.getElementById('m-miembros').textContent = miembros.length;
+  document.getElementById('m-oraciones').textContent = oraciones.filter(o => o.estado === 'pendiente').length;
+  document.getElementById('m-prospectos').textContent = prospectos.length;
+}
+
+// ── DASHBOARD ──
+function renderDashboard() {
+  const el = document.getElementById('dash-celulas-list');
+  if (!celulas.length) { el.innerHTML = `<div class="empty"><span class="empty-icon">🏠</span><p class="empty-text">Aún no hay células registradas</p></div>`; return; }
+  el.innerHTML = celulas.slice(0, 4).map(c => {
+    const mbs = miembros.filter(m => m.celula === c.id).length;
+    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cream-dark);">
+      <div>
+        <p style="font-size:14px;font-weight:600;color:var(--navy)">${c.nombre}</p>
+        <p style="font-size:12px;color:var(--text-light)">${c.dia} · ${c.hora} · Líder: ${c.lider}</p>
+      </div>
+      <div style="text-align:right">
+        <span style="font-size:18px;font-weight:700;color:var(--navy)">${mbs}</span>
+        <p style="font-size:11px;color:var(--text-light)">miembros</p>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── CÉLULAS ──
+function renderCelulas(filtro = 'todas') {
+  const el = document.getElementById('celulas-container');
+  const lista = filtro === 'todas' ? celulas : celulas.filter(c => c.estado === filtro);
+  if (!lista.length) { el.innerHTML = `<div class="empty" style="grid-column:1/-1"><span class="empty-icon">🏠</span><p class="empty-text">No hay células en esta categoría</p></div>`; return; }
+  el.innerHTML = lista.map(c => {
+    const mbs = miembros.filter(m => m.celula === c.id).length;
+    const badge = { activa: 'badge-activa', nueva: 'badge-nueva', inactiva: 'badge-inactiva' }[c.estado] || 'badge-activa';
+    const lbl = { activa: 'Activa', nueva: 'Nueva', inactiva: 'Inactiva' }[c.estado] || c.estado;
+    return `<div class="celula-card">
+      <span class="celula-badge ${badge}">${lbl}</span>
+      <p class="celula-name">${c.nombre}</p>
+      <p class="celula-lider">Líder: ${c.lider}${c.colider ? ' · Co-líder: ' + c.colider : ''}</p>
+      <div class="celula-stats">
+        <div class="cstat"><span class="cstat-num">${mbs}</span><span class="cstat-lbl">Miembros</span></div>
+        <div class="cstat"><span class="cstat-num">${prospectos.filter(p => p.celula === c.id).length}</span><span class="cstat-lbl">Prospectos</span></div>
+        <div class="cstat"><span class="cstat-num">${reuniones.filter(r => r.celula === c.id).length}</span><span class="cstat-lbl">Reuniones</span></div>
+      </div>
+      <p style="font-size:12px;color:var(--text-light);margin-bottom:12px;">📍 ${c.direccion || 'Sin dirección'} · ${c.dia} ${c.hora}</p>
+      <div class="celula-actions">
+        <button class="btn btn-sm btn-outline" onclick="editarCelula('${c.id}')">✏ Editar</button>
+        <button class="btn btn-sm btn-danger" onclick="eliminarCelula('${c.id}')">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filtrarCelulas(filtro, el) {
+  document.querySelectorAll('#celulas .filter-tag').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderCelulas(filtro);
+}
+
+// ── MIEMBROS ──
+function renderMiembros(filtro = 'todos') {
+  const el = document.getElementById('miembros-list');
+  const lista = filtro === 'todos' ? miembros : miembros.filter(m => m.rol === filtro);
+  if (!lista.length) { el.innerHTML = `<div class="empty"><span class="empty-icon">👥</span><p class="empty-text">No hay miembros en esta categoría</p></div>`; return; }
+  el.innerHTML = lista.map(m => {
+    const initials = (m.nombre[0] || '') + (m.apellido[0] || '');
+    const celulaNombre = celulas.find(c => c.id === m.celula)?.nombre || 'Sin célula';
+    const rolLabel = { lider: '🌟 Líder', miembro: 'Miembro', nuevo: '🌱 Nuevo' }[m.rol] || m.rol;
+    return `<div class="member-row">
+      <div class="avatar">${initials.toUpperCase()}</div>
+      <div class="member-info">
+        <p class="member-name">${m.nombre} ${m.apellido}</p>
+        <p class="member-role">${rolLabel} · ${celulaNombre}${m.tel ? ' · ' + m.tel : ''}</p>
+      </div>
+      <div class="member-actions">
+        <button class="btn btn-sm btn-outline" onclick="editarMiembro('${m.id}')">✏</button>
+        <button class="btn btn-sm btn-danger" onclick="eliminarMiembro('${m.id}')">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filtrarMiembros(filtro, el) {
+  document.querySelectorAll('#miembros .filter-tag').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderMiembros(filtro);
+}
+
+// ── ASISTENCIA ──
+function renderAsistencia() {
+  const sel = document.getElementById('asist-celula');
+  sel.innerHTML = '<option value="">Selecciona célula...</option>' + celulas.map(c => `<option value="${c.id}">${c.nombre}</option>`).join('');
+  renderHistorialReuniones();
+}
+
+function cargarMiembrosAsistencia() {
+  const celulaId = document.getElementById('asist-celula').value;
+  const card = document.getElementById('asist-miembros-card');
+  const grid = document.getElementById('asistencia-grid');
+  if (!celulaId) { card.style.display = 'none'; return; }
+  const mbs = miembros.filter(m => m.celula === celulaId);
+  if (!mbs.length) { card.style.display = 'none'; toast('Esta célula no tiene miembros registrados'); return; }
+  card.style.display = 'block';
+  grid.innerHTML = mbs.map(m => `
+    <div class="asist-item presente" id="asist-${m.id}" onclick="toggleAsist('${m.id}')">
+      <div class="asist-check">✓</div>
+      <span class="asist-name">${m.nombre} ${m.apellido}</span>
+    </div>`).join('');
+  updateAsistCounter();
+}
+
+function toggleAsist(id) {
+  const el = document.getElementById('asist-' + id);
+  el.classList.toggle('presente');
+  el.classList.toggle('ausente');
+  el.querySelector('.asist-check').textContent = el.classList.contains('presente') ? '✓' : '';
+  updateAsistCounter();
+}
+
+function updateAsistCounter() {
+  const total = document.querySelectorAll('.asist-item').length;
+  const presentes = document.querySelectorAll('.asist-item.presente').length;
+  document.getElementById('asist-counter').textContent = `${presentes} de ${total} presentes`;
+}
+
+function guardarAsistencia() {
+  const celulaId = document.getElementById('asist-celula').value;
+  const fecha = document.getElementById('asist-fecha').value;
+  const tema = document.getElementById('asist-tema').value;
+  if (!celulaId || !fecha || !tema) { toast('⚠ Completa todos los campos'); return; }
+  const presentes = [...document.querySelectorAll('.asist-item.presente')].map(el => el.id.replace('asist-', ''));
+  const total = document.querySelectorAll('.asist-item').length;
+  const celulaNombre = celulas.find(c => c.id === celulaId)?.nombre || '';
+  reuniones.unshift({ id: uid(), celula: celulaId, celulaNombre, fecha, tema, presentes, total, versiculo: document.getElementById('asist-versiculo').value });
+  save();
+  renderHistorialReuniones();
+  toast('✅ Asistencia guardada correctamente');
+  document.getElementById('asist-tema').value = '';
+  document.getElementById('asist-versiculo').value = '';
+}
+
+function renderHistorialReuniones() {
+  const el = document.getElementById('historial-reuniones');
+  if (!reuniones.length) { el.innerHTML = `<div class="empty"><span class="empty-icon">📋</span><p class="empty-text">Aún no hay reuniones registradas</p></div>`; return; }
+  el.innerHTML = reuniones.slice(0, 12).map(r => {
+    const d = new Date(r.fecha + 'T12:00');
+    const pct = Math.round((r.presentes.length / r.total) * 100) || 0;
+    const color = pct >= 75 ? 'var(--success)' : pct >= 50 ? 'var(--gold-dark)' : 'var(--danger)';
+    return `<div class="reunion-item">
+      <div class="reunion-date">
+        <span class="reunion-date-day">${d.getDate()}</span>
+        <span class="reunion-date-mes">${d.toLocaleString('es', {month:'short'})}</span>
+      </div>
+      <div class="reunion-info">
+        <p class="reunion-tema">${r.tema}</p>
+        <p class="reunion-meta">${r.celulaNombre} · ${r.versiculo || ''}</p>
+        <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" style="width:${pct}%;background:${color}"></div></div>
+      </div>
+      <span class="reunion-badge" style="background:${color}15;color:${color}">${r.presentes.length}/${r.total}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── ORACIONES ──
+function renderOraciones(filtro = 'todas') {
+  const el = document.getElementById('oraciones-list');
+  const lista = filtro === 'todas' ? oraciones : oraciones.filter(o => o.estado === filtro);
+  if (!lista.length) { el.innerHTML = `<div class="empty"><span class="empty-icon">🙏</span><p class="empty-text">No hay peticiones en esta categoría</p></div>`; return; }
+  el.innerHTML = lista.map(o => {
+    const celulaNombre = celulas.find(c => c.id === o.celula)?.nombre || '';
+    const status = o.estado === 'respondida' ? 'status-respondida' : 'status-pendiente';
+    const lbl = o.estado === 'respondida' ? 'Respondida ✓' : 'En oración';
+    return `<div class="oracion-card">
+      <p class="oracion-texto">"${o.texto}"</p>
+      <div class="oracion-meta">
+        <span>${o.quien} · ${celulaNombre} · ${o.tipo}</span>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="oracion-status ${status}">${lbl}</span>
+          ${o.estado !== 'respondida' ? `<button class="btn btn-sm" style="background:var(--success-bg);color:var(--success);border:1px solid var(--success);padding:3px 8px;font-size:11px" onclick="marcarRespondida('${o.id}')">¡Respondida!</button>` : ''}
+          <button class="btn btn-sm btn-danger" onclick="eliminarOracion('${o.id}')">🗑</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filtrarOraciones(filtro, el) {
+  document.querySelectorAll('#oracion .filter-tag').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderOraciones(filtro);
+}
+
+// ── PROSPECTOS ──
+function renderProspectos() {
+  const el = document.getElementById('prospectos-list');
+  if (!prospectos.length) { el.innerHTML = `<div class="empty"><span class="empty-icon">🌱</span><p class="empty-text">No hay prospectos registrados aún</p></div>`; return; }
+  el.innerHTML = prospectos.map(p => {
+    const celulaNombre = celulas.find(c => c.id === p.celula)?.nombre || '';
+    const etapa = parseInt(p.etapa) || 1;
+    const bar = [1,2,3,4].map(i => `<div class="etapa-step ${i < etapa ? 'done' : i === etapa ? 'current' : ''}"></div>`).join('');
+    const etapaLbl = ['', 'Contacto', 'Invitación', 'Visitó', 'Miembro'][etapa] || '';
+    return `<div class="prospecto-card">
+      <div class="prospecto-avatar">${p.nombre[0] || '?'}${p.apellido[0] || ''}</div>
+      <div class="prospecto-info">
+        <p class="prospecto-name">${p.nombre} ${p.apellido}</p>
+        <p class="prospecto-data">${p.tel || 'Sin tel'} · ${p.barrio || ''} · ${celulaNombre} · Evangelizador: ${p.evang || '—'}</p>
+        <div class="etapa-bar">${bar}</div>
+        <p style="font-size:11px;color:var(--text-light);margin-top:3px">Etapa: ${etapaLbl}</p>
+      </div>
+      <div style="display:flex;gap:6px;flex-direction:column">
+        ${etapa < 4 ? `<button class="btn btn-sm btn-gold" onclick="avanzarEtapa('${p.id}')">→ Avanzar</button>` : `<span style="font-size:11px;font-weight:700;color:var(--success)">¡Integrado!</span>`}
+        <button class="btn btn-sm btn-danger" onclick="eliminarProspecto('${p.id}')">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ──────────────────────────── MODALES ────────────────────────────
+function abrirModal(id) { document.getElementById(id).classList.add('open'); }
+function cerrarModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function poblarSelectCelulas(...ids) {
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = celulas.map(c => `<option value="${c.id}">${c.nombre}</option>`).join('');
+  });
+}
+
+function abrirModalCelula() {
+  document.getElementById('modal-celula-title').textContent = 'Nueva Célula';
+  document.getElementById('celula-edit-id').value = '';
+  ['celula-nombre','celula-lider','celula-colider','celula-direccion'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('celula-hora').value = '19:00';
+  abrirModal('modal-celula');
+}
+
+function guardarCelula() {
+  const nombre = document.getElementById('celula-nombre').value.trim();
+  const lider = document.getElementById('celula-lider').value.trim();
+  if (!nombre || !lider) { toast('⚠ Nombre y Líder son obligatorios'); return; }
+  const editId = document.getElementById('celula-edit-id').value;
+  const datos = {
+    nombre, lider,
+    colider: document.getElementById('celula-colider').value.trim(),
+    dia: document.getElementById('celula-dia').value,
+    hora: document.getElementById('celula-hora').value,
+    direccion: document.getElementById('celula-direccion').value.trim(),
+    zona: document.getElementById('celula-zona').value,
+    estado: document.getElementById('celula-estado').value
+  };
+  if (editId) {
+    const idx = celulas.findIndex(c => c.id === editId);
+    celulas[idx] = { ...celulas[idx], ...datos };
+    toast('✅ Célula actualizada');
+  } else {
+    celulas.push({ id: uid(), ...datos });
+    toast('✅ Célula creada');
+  }
+  save(); cerrarModal('modal-celula'); renderCelulas(); updateHeaderStats();
+}
+
+function editarCelula(id) {
+  const c = celulas.find(x => x.id === id);
+  document.getElementById('modal-celula-title').textContent = 'Editar Célula';
+  document.getElementById('celula-edit-id').value = id;
+  document.getElementById('celula-nombre').value = c.nombre;
+  document.getElementById('celula-lider').value = c.lider;
+  document.getElementById('celula-colider').value = c.colider || '';
+  document.getElementById('celula-dia').value = c.dia;
+  document.getElementById('celula-hora').value = c.hora;
+  document.getElementById('celula-direccion').value = c.direccion || '';
+  document.getElementById('celula-zona').value = c.zona || 'Norte';
+  document.getElementById('celula-estado').value = c.estado;
+  abrirModal('modal-celula');
+}
+
+function eliminarCelula(id) {
+  if (!confirm('¿Eliminar esta célula?')) return;
+  celulas = celulas.filter(c => c.id !== id);
+  save(); renderCelulas(); updateHeaderStats(); toast('Célula eliminada');
+}
+
+function abrirModalMiembro() {
+  document.getElementById('modal-miembro-title').textContent = 'Nuevo Miembro';
+  document.getElementById('miembro-edit-id').value = '';
+  ['miembro-nombre','miembro-apellido','miembro-tel','miembro-email','miembro-dir','miembro-notas'].forEach(id => document.getElementById(id).value = '');
+  poblarSelectCelulas('miembro-celula');
+  abrirModal('modal-miembro');
+}
+
+function guardarMiembro() {
+  const nombre = document.getElementById('miembro-nombre').value.trim();
+  const apellido = document.getElementById('miembro-apellido').value.trim();
+  if (!nombre || !apellido) { toast('⚠ Nombre y apellido son obligatorios'); return; }
+  const editId = document.getElementById('miembro-edit-id').value;
+  const datos = {
+    nombre, apellido,
+    tel: document.getElementById('miembro-tel').value.trim(),
+    email: document.getElementById('miembro-email').value.trim(),
+    celula: document.getElementById('miembro-celula').value,
+    rol: document.getElementById('miembro-rol').value,
+    dir: document.getElementById('miembro-dir').value.trim(),
+    notas: document.getElementById('miembro-notas').value.trim()
+  };
+  if (editId) {
+    const idx = miembros.findIndex(m => m.id === editId);
+    miembros[idx] = { ...miembros[idx], ...datos };
+    toast('✅ Miembro actualizado');
+  } else {
+    miembros.push({ id: uid(), ...datos });
+    toast('✅ Miembro registrado');
+  }
+  save(); cerrarModal('modal-miembro'); renderMiembros(); updateHeaderStats();
+}
+
+function editarMiembro(id) {
+  const m = miembros.find(x => x.id === id);
+  document.getElementById('modal-miembro-title').textContent = 'Editar Miembro';
+  document.getElementById('miembro-edit-id').value = id;
+  document.getElementById('miembro-nombre').value = m.nombre;
+  document.getElementById('miembro-apellido').value = m.apellido;
+  document.getElementById('miembro-tel').value = m.tel || '';
+  document.getElementById('miembro-email').value = m.email || '';
+  document.getElementById('miembro-dir').value = m.dir || '';
+  document.getElementById('miembro-notas').value = m.notas || '';
+  poblarSelectCelulas('miembro-celula');
+  document.getElementById('miembro-celula').value = m.celula;
+  document.getElementById('miembro-rol').value = m.rol;
+  abrirModal('modal-miembro');
+}
+
+function eliminarMiembro(id) {
+  if (!confirm('¿Eliminar este miembro?')) return;
+  miembros = miembros.filter(m => m.id !== id);
+  save(); renderMiembros(); updateHeaderStats(); toast('Miembro eliminado');
+}
+
+function abrirModalOracion() {
+  ['oracion-quien','oracion-texto'].forEach(id => document.getElementById(id).value = '');
+  poblarSelectCelulas('oracion-celula');
+  abrirModal('modal-oracion');
+}
+
+function guardarOracion() {
+  const quien = document.getElementById('oracion-quien').value.trim();
+  const texto = document.getElementById('oracion-texto').value.trim();
+  if (!quien || !texto) { toast('⚠ Completa los campos'); return; }
+  oraciones.unshift({ id: uid(), quien, texto, celula: document.getElementById('oracion-celula').value, tipo: document.getElementById('oracion-tipo').value, estado: 'pendiente', fecha: new Date().toLocaleDateString('es') });
+  save(); cerrarModal('modal-oracion'); renderOraciones(); updateHeaderStats(); toast('🙏 Petición registrada');
+}
+
+function marcarRespondida(id) {
+  const idx = oraciones.findIndex(o => o.id === id);
+  oraciones[idx].estado = 'respondida';
+  save(); renderOraciones(); updateHeaderStats(); toast('🎉 ¡Gloria a Dios! Petición respondida');
+}
+
+function eliminarOracion(id) {
+  oraciones = oraciones.filter(o => o.id !== id);
+  save(); renderOraciones(); updateHeaderStats(); toast('Petición eliminada');
+}
+
+function abrirModalProspecto() {
+  ['prosp-nombre','prosp-apellido','prosp-tel','prosp-barrio','prosp-evang'].forEach(id => document.getElementById(id).value = '');
+  poblarSelectCelulas('prosp-celula');
+  abrirModal('modal-prospecto');
+}
+
+function guardarProspecto() {
+  const nombre = document.getElementById('prosp-nombre').value.trim();
+  if (!nombre) { toast('⚠ Ingresa el nombre'); return; }
+  prospectos.unshift({ id: uid(), nombre, apellido: document.getElementById('prosp-apellido').value.trim(), tel: document.getElementById('prosp-tel').value.trim(), barrio: document.getElementById('prosp-barrio').value.trim(), celula: document.getElementById('prosp-celula').value, etapa: document.getElementById('prosp-etapa').value, evang: document.getElementById('prosp-evang').value.trim() });
+  save(); cerrarModal('modal-prospecto'); renderProspectos(); updateHeaderStats(); toast('🌱 Prospecto registrado');
+}
+
+function avanzarEtapa(id) {
+  const idx = prospectos.findIndex(p => p.id === id);
+  const etapa = parseInt(prospectos[idx].etapa);
+  if (etapa < 4) {
+    prospectos[idx].etapa = etapa + 1;
+    if (etapa + 1 === 4) toast('🎉 ¡Prospecto integrado como miembro!');
+    else toast('✅ Etapa avanzada');
+    save(); renderProspectos();
+  }
+}
+
+function eliminarProspecto(id) {
+  if (!confirm('¿Eliminar este prospecto?')) return;
+  prospectos = prospectos.filter(p => p.id !== id);
+  save(); renderProspectos(); updateHeaderStats(); toast('Prospecto eliminado');
+}
+
+// Cerrar modal al click fuera
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+});
+
+// Fecha por defecto
+document.getElementById('asist-fecha').value = new Date().toISOString().slice(0, 10);
+
+// ── DATOS DEMO ──────────────────────────────────────────────────
+function cargarDemoSiVacio() {
+  if (celulas.length) return;
+  celulas = [
+    { id: 'c1', nombre: 'Célula San José', lider: 'Carlos Restrepo', colider: 'Ana Pérez', dia: 'Martes', hora: '19:00', direccion: '1234 Oak Ave, Miami FL', zona: 'Norte', estado: 'activa' },
+    { id: 'c2', nombre: 'Célula Madre de Dios', lider: 'María Torres', colider: 'Pedro Gómez', dia: 'Jueves', hora: '19:30', direccion: '567 Palm St, Miami FL', zona: 'Sur', estado: 'activa' },
+    { id: 'c3', nombre: 'Célula Divina Misericordia', lider: 'Luis Herrera', colider: '', dia: 'Viernes', hora: '20:00', direccion: '890 Coral Way, Hialeah FL', zona: 'Oeste', estado: 'nueva' }
+  ];
+  miembros = [
+    { id: 'm1', nombre: 'Carlos', apellido: 'Restrepo', tel: '+1 305-111-2222', email: '', celula: 'c1', rol: 'lider', dir: '', notas: '' },
+    { id: 'm2', nombre: 'Ana', apellido: 'Pérez', tel: '+1 305-333-4444', email: '', celula: 'c1', rol: 'miembro', dir: '', notas: '' },
+    { id: 'm3', nombre: 'Juan', apellido: 'Martínez', tel: '+1 305-555-6666', email: '', celula: 'c1', rol: 'miembro', dir: '', notas: '' },
+    { id: 'm4', nombre: 'María', apellido: 'Torres', tel: '+1 786-111-3333', email: '', celula: 'c2', rol: 'lider', dir: '', notas: '' },
+    { id: 'm5', nombre: 'Pedro', apellido: 'Gómez', tel: '+1 786-444-5555', email: '', celula: 'c2', rol: 'miembro', dir: '', notas: '' },
+    { id: 'm6', nombre: 'Luis', apellido: 'Herrera', tel: '+1 305-777-8888', email: '', celula: 'c3', rol: 'lider', dir: '', notas: '' }
+  ];
+  oraciones = [
+    { id: 'o1', quien: 'Ana Pérez', texto: 'Sanidad para mi mamá que está enferma del corazón.', celula: 'c1', tipo: 'Salud', estado: 'pendiente', fecha: '12/04/2025' },
+    { id: 'o2', quien: 'Pedro Gómez', texto: 'Que Dios abra puertas en el trabajo que estoy buscando.', celula: 'c2', tipo: 'Trabajo', estado: 'pendiente', fecha: '10/04/2025' },
+    { id: 'o3', quien: 'Juan Martínez', texto: 'Reconciliación con mi hermano, llevamos meses sin hablar.', celula: 'c1', tipo: 'Familia', estado: 'respondida', fecha: '05/04/2025' }
+  ];
+  prospectos = [
+    { id: 'p1', nombre: 'Roberto', apellido: 'Sánchez', tel: '+1 305-999-0000', barrio: 'Little Havana', celula: 'c1', etapa: '2', evang: 'Carlos Restrepo' },
+    { id: 'p2', nombre: 'Claudia', apellido: 'Vargas', tel: '+1 786-222-1111', barrio: 'Hialeah', celula: 'c2', etapa: '3', evang: 'María Torres' }
+  ];
+  reuniones = [
+    { id: 'r1', celula: 'c1', celulaNombre: 'Célula San José', fecha: '2025-04-08', tema: 'La oración que transforma', presentes: ['m1','m2','m3'], total: 3, versiculo: 'Santiago 5:16' },
+    { id: 'r2', celula: 'c2', celulaNombre: 'Célula Madre de Dios', fecha: '2025-04-10', tema: 'Discipulado y multiplicación', presentes: ['m4','m5'], total: 2, versiculo: 'Mateo 28:19' }
+  ];
+  save();
+}
+
+cargarDemoSiVacio();
+render('dashboard');
+</script>
+</body>
+</html>
